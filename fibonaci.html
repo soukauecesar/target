@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Fibonacci</title>
+</head>
+<body>
+
+<h1>Verificar se um número pertence à sequência de Fibonacci</h1>
+
+<label for="numero">Informe um número:</label>
+<input type="number" id="numero" name="numero">
+<button onclick="verificarFibonacci()">Verificar</button>
+
+<p id="resultado"></p>
+
+<script>
+    function verificarFibonacci() {
+        let numero = parseInt(document.getElementById("numero").value);
+
+        if (isNaN(numero)) {
+            document.getElementById("resultado").innerText = "Por favor, insira um número válido.";
+            return;
+        }
+
+        let a = 0, b = 1, fibonacci = 0;
+
+        // Calculando se o número pertence à sequência de Fibonacci
+        while (a <= numero) {
+            if (a === numero) {
+                document.getElementById("resultado").innerText = numero + " pertence à sequência de Fibonacci.";
+                return;
+            }
+            fibonacci = a + b;
+            a = b;
+            b = fibonacci;
+        }
+
+        document.getElementById("resultado").innerText = numero + " não pertence à sequência de Fibonacci.";
+    }
+</script>
+
+</body>
+</html>

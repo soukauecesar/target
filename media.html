@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faturamento Diário</title>
+</head>
+<body>
+
+<h1>Resultados do Faturamento</h1>
+<p id="menor"></p>
+<p id="maior"></p>
+<p id="dias_acima_media"></p>
+
+<script>
+    // Exemplo de JSON de faturamento
+    const faturamento_json = {
+        "faturamento_diario": [1000, 2000, 3000, 0, 4000, 0, 0, 5000, 6000, 0, 0]
+    };
+
+    // Pegando os dados do faturamento diário
+    let faturamento = faturamento_json['faturamento_diario'];
+
+    // Filtrando os dias com faturamento maior que zero
+    faturamento = faturamento.filter(valor => valor > 0);
+
+    // Calculando o menor, maior e a média
+    const menor_faturamento = Math.min(...faturamento);
+    const maior_faturamento = Math.max(...faturamento);
+    const media_mensal = faturamento.reduce((a, b) => a + b, 0) / faturamento.length;
+
+    // Calculando quantos dias tiveram faturamento acima da média
+    const dias_acima_media = faturamento.filter(valor => valor > media_mensal).length;
+
+    // Exibindo os resultados no navegador
+    document.getElementById("menor").innerText = `Menor faturamento: R$ ${menor_faturamento}`;
+    document.getElementById("maior").innerText = `Maior faturamento: R$ ${maior_faturamento}`;
+    document.getElementById("dias_acima_media").innerText = `Dias com faturamento acima da média: ${dias_acima_media}`;
+</script>
+
+</body>
+</html>

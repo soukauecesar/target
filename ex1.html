@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 01</title>
+</head>
+<body>
+
+<h1>Resultado da Soma</h1>
+<p id="resultado"></p>
+
+<script>
+    let INDICE = 13;
+    let SOMA = 0;
+    let K = 0;
+
+    while (K < INDICE) {
+        K = K + 1;
+        SOMA = SOMA + K;
+    }
+
+    // Exibir o resultado no navegador
+    document.getElementById("resultado").innerText = "O valor de SOMA é: " + SOMA;
+</script>
+
+</body>
+</html>

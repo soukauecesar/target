@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentual de Faturamento por Estado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Percentual de Faturamento por Estado</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Estado</th>
+            <th>Faturamento (R$)</th>
+            <th>Percentual (%)</th>
+        </tr>
+    </thead>
+    <tbody id="tabela-resultados">
+        <!-- Os resultados serão inseridos aqui pelo JavaScript -->
+    </tbody>
+</table>
+
+<script>
+    // Valores de faturamento por estado
+    const faturamento = {
+        "SP": 67836.43,
+        "RJ": 36678.66,
+        "MG": 29229.88,
+        "ES": 27165.48,
+        "Outros": 19849.53
+    };
+
+    // Calculando o faturamento total
+    const totalFaturamento = Object.values(faturamento).reduce((total, valor) => total + valor, 0);
+
+    // Selecionando o corpo da tabela para exibir os resultados
+    const tabelaResultados = document.getElementById('tabela-resultados');
+
+    // Função para calcular e exibir os percentuais
+    for (const estado in faturamento) {
+        const valor = faturamento[estado];
+        const percentual = ((valor / totalFaturamento) * 100).toFixed(2); // Calcula o percentual e limita a 2 casas decimais
+
+        // Criando uma nova linha na tabela para cada estado
+        const novaLinha = `
+            <tr>
+                <td>${estado}</td>
+                <td>R$ ${valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
+                <td>${percentual}%</td>
+            </tr>
+        `;
+        // Inserindo a nova linha na tabela
+        tabelaResultados.innerHTML += novaLinha;
+    }
+
+</script>
+
+</body>
+</html>
